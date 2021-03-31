@@ -7,10 +7,10 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.0/contr
 
 
 /**
- * @dev This is a wrapper for dai tokens on IDChain
+ * @dev This is a converter for dai tokens on IDChain
  * The approch here is, It gets old bridged DAI and return the new omnibridge's DAI.
  */
-contract Wrapper is Ownable {
+contract Converter is Ownable {
     using SafeMath for uint256;
 
     ERC20 internal oldDai;
@@ -19,7 +19,7 @@ contract Wrapper is Ownable {
     string private constant TRANSFER_FROM_ERROR = "Input token transferFrom failed";
     string private constant TRANSFER_ERROR = "Token transfer failed";
 
-    event DaiWrapped(address account, uint256 amount);
+    event DaiConverted(address account, uint256 amount);
     event WithdrawNewDai(address account, uint256 amount);
     event WithdrawOldDai(address account, uint256 amount);
 
@@ -34,10 +34,10 @@ contract Wrapper is Ownable {
     }
 
     /**
-     *@notice wrap oldDai to newDai.
+     *@notice convert oldDai to newDai.
      *@dev A function that gets oldDai and returns newDai
      */
-    function wrap()
+    function convert()
         external
         returns (bool success)
     {
@@ -51,7 +51,7 @@ contract Wrapper is Ownable {
 
         require(newDai.transfer(_msgSender(), allowance), TRANSFER_ERROR);
 
-        emit DaiWrapped(_msgSender(), allowance);
+        emit DaiConverted(_msgSender(), allowance);
         return true;
     }
 
