@@ -166,7 +166,7 @@ function wrap() {
 }
 
 function wrapConfirm() {
-  wrapperContract.methods.wrap().send({ from: web3.eth.defaultAccount }, function(error, hash) {
+  wrapperContract.methods.convert().send({ from: web3.eth.defaultAccount }, function(error, hash) {
     if (error) {
       console.log(error);
       return;
