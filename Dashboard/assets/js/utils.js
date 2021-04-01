@@ -54,7 +54,7 @@ function isConfirmed(txBlockNumber, type) {
       Swal.fire({
         type: "success",
         title: "Success",
-        text: "DAIs were Wrapped",
+        text: "Process was completed successfully",
         footer: ""
       });
     } else {
