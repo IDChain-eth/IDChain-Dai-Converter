@@ -102,7 +102,14 @@ async function unlockProvider() {
             return;
           }
           daiAmount = result;
-          $("#dai").html("DAI: " + numberDecorator((result / 10 ** 18).toFixed(2)));
+          $("#oldDai").html("Old DAI Balance: " + numberDecorator((result / 10 ** 18).toFixed(2)));
+        });
+        newDaiContract.methods.balanceOf(web3.eth.defaultAccount).call(function(error, result) {
+          if (error) {
+            return;
+          }
+          daiAmount = result;
+          $("#newDai").html("New DAI Balance: " + numberDecorator((result / 10 ** 18).toFixed(2)));
         });
       } else {
         $(".wrapBtn").hide();
