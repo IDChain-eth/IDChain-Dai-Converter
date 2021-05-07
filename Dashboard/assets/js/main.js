@@ -108,7 +108,6 @@ async function unlockProvider() {
           if (error) {
             return;
           }
-          daiAmount = result;
           $("#newDai").html("New DAI Balance: " + numberDecorator((result / 10 ** 18).toFixed(2)));
         });
       } else {
